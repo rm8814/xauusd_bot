@@ -127,25 +127,24 @@ class DataFetcher:
             # Create DataFrame
             df = pd.DataFrame(values)
 
-            # Rename columns
-            df = df.rename(
-                columns={
-                    'datetime': 'timestamp',
-                    'open': 'open',
-                    'high': 'high',
-                    'low': 'low',
-                    'close': 'close',
-                    'volume': 'volume',
-                }
-            )
+            # Rename datetime column if present
+            if 'datetime' in df.columns:
+                df = df.rename(columns={'datetime': 'timestamp'})
 
-            # Convert types
+            # Convert types for OHLC data
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             df['open'] = pd.to_numeric(df['open'])
             df['high'] = pd.to_numeric(df['high'])
             df['low'] = pd.to_numeric(df['low'])
             df['close'] = pd.to_numeric(df['close'])
-            df['volume'] = pd.to_numeric(df['volume'], errors='coerce').fillna(0)
+
+            # Handle volume - forex pairs often don't have volume
+            if 'volume' in df.columns:
+                df['volume'] = pd.to_numeric(df['volume'], errors='coerce').fillna(0)
+            else:
+                # Create volume column with zeros for forex pairs
+                df['volume'] = 0
+                logger.debug("No volume data in response, using zeros")
 
             # Sort by timestamp (oldest first)
             df = df.sort_values('timestamp').reset_index(drop=True)
