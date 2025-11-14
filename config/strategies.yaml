@@ -11,6 +11,9 @@ strategies:
       primary:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -31,6 +34,9 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -54,6 +60,9 @@ strategies:
       primary:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -74,6 +83,9 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -97,6 +109,9 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -117,6 +132,9 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
       confirmation:
         name: "RVI"
         type: "rvi"

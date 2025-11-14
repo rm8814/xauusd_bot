@@ -52,7 +52,10 @@ class Indicators:
     def chaikin_oscillator(df: pd.DataFrame, fast: int = 3, slow: int = 10) -> pd.Series:
         """
         Chaikin Oscillator
-        ADL = Cumulative sum of: ((Close - Low) - (High - Close)) / (High - Low) * Volume
+        For instruments with volume data:
+          ADL = Cumulative sum of: ((Close - Low) - (High - Close)) / (High - Low) * Volume
+        For forex/instruments without volume:
+          ADL = Cumulative sum of CLV (price-based momentum)
         Chaikin = EMA(ADL, fast) - EMA(ADL, slow)
         Signal: Chaikin > 0 = bullish (+1), Chaikin < 0 = bearish (-1)
         """
@@ -63,7 +66,13 @@ class Indicators:
         clv = clv.fillna(0)  # Handle division by zero
 
         # Calculate Accumulation/Distribution Line (ADL)
-        adl = (clv * df['volume']).cumsum()
+        # Use volume if available and non-zero, otherwise use CLV directly (price-based)
+        has_volume = 'volume' in df.columns and df['volume'].sum() > 0
+        if has_volume:
+            adl = (clv * df['volume']).cumsum()
+        else:
+            # For forex pairs without volume, use CLV cumulative sum (price momentum)
+            adl = clv.cumsum()
 
         # Calculate Chaikin Oscillator
         fast_ema = adl.ewm(span=fast, adjust=False).mean()

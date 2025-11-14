@@ -1,6 +1,6 @@
 """
 Signal Detection Module
-Implements 3-layer confirmation system for trading signals
+Implements 4-layer confirmation system for trading signals
 """
 
 import pandas as pd
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class SignalDetector:
-    """Detects trading signals using 3-layer confirmation system"""
+    """Detects trading signals using 4-layer confirmation system"""
 
     def __init__(self, strategy_config: dict, indicator_params: dict, wait_time_minutes: int = 5):
         """
@@ -44,9 +44,12 @@ class SignalDetector:
             strategy = self.strategy_config[strategy_id]
             indicators = strategy['indicators']
 
-            # Calculate all 3 indicator signals
+            # Calculate all 4 indicator signals
             primary_signal = self._get_indicator_signal(
                 df, indicators['primary']['type']
+            )
+            volume_signal = self._get_indicator_signal(
+                df, indicators['volume']['type']
             )
             confirmation_signal = self._get_indicator_signal(
                 df, indicators['confirmation']['type']
@@ -57,11 +60,12 @@ class SignalDetector:
 
             # Get latest signals
             primary = primary_signal.iloc[-1] if len(primary_signal) > 0 else 0
+            volume = volume_signal.iloc[-1] if len(volume_signal) > 0 else 0
             confirmation = confirmation_signal.iloc[-1] if len(confirmation_signal) > 0 else 0
             baseline = baseline_signal.iloc[-1] if len(baseline_signal) > 0 else 0
 
-            # Check if all 3 indicators are aligned
-            if primary != 0 and primary == confirmation == baseline:
+            # Check if all 4 indicators are aligned
+            if primary != 0 and primary == volume == confirmation == baseline:
                 signal_key = f"{strategy_id}_{primary}"
 
                 # Check if this is a new signal or existing pending signal
@@ -71,6 +75,7 @@ class SignalDetector:
                         'detected_at': current_time,
                         'direction': 'LONG' if primary > 0 else 'SHORT',
                         'primary': primary,
+                        'volume': volume,
                         'confirmation': confirmation,
                         'baseline': baseline,
                         'strategy_id': strategy_id,
@@ -93,7 +98,7 @@ class SignalDetector:
 
                     if time_elapsed >= self.wait_time_minutes:
                         # Wait time passed, validate signal still holds
-                        if primary == confirmation == baseline:
+                        if primary == volume == confirmation == baseline:
                             # Signal confirmed! Generate entry signal
                             signal = self._generate_signal(df, pending, current_time)
 
@@ -117,13 +122,13 @@ class SignalDetector:
                 # Check if any pending signals should be invalidated
                 signal_key = f"{strategy_id}_1"  # Bullish
                 if signal_key in self.pending_signals:
-                    if primary != 1 or confirmation != 1 or baseline != 1:
+                    if primary != 1 or volume != 1 or confirmation != 1 or baseline != 1:
                         logger.warning(f"Bullish signal invalidated for {strategy_id}")
                         del self.pending_signals[signal_key]
 
                 signal_key = f"{strategy_id}_-1"  # Bearish
                 if signal_key in self.pending_signals:
-                    if primary != -1 or confirmation != -1 or baseline != -1:
+                    if primary != -1 or volume != -1 or confirmation != -1 or baseline != -1:
                         logger.warning(f"Bearish signal invalidated for {strategy_id}")
                         del self.pending_signals[signal_key]
 
@@ -171,6 +176,10 @@ class SignalDetector:
                     'name': strategy['indicators']['primary']['name'],
                     'signal': pending_signal['primary'],
                 },
+                'volume': {
+                    'name': strategy['indicators']['volume']['name'],
+                    'signal': pending_signal['volume'],
+                },
                 'confirmation': {
                     'name': strategy['indicators']['confirmation']['name'],
                     'signal': pending_signal['confirmation'],
@@ -211,7 +220,7 @@ class SignalDetector:
         - Volume
         - Volatility
         """
-        score = 70  # Base score for 3-layer alignment
+        score = 70  # Base score for 4-layer alignment
 
         try:
             # Check trend strength (price distance from baseline)
@@ -248,12 +257,12 @@ class SignalDetector:
     ) -> Optional[Dict]:
         """
         Check for continuation entry signal
-        Requires: Strong trend + volatility expansion + new high/low + 3-layer alignment
+        Requires: Strong trend + volatility expansion + new high/low + 4-layer alignment
         """
         try:
             strategy = self.strategy_config[strategy_id]
 
-            # First check if 3-layer alignment exists
+            # First check if 4-layer alignment exists
             signal = self.check_signal(df, strategy_id, current_time)
             if not signal:
                 return None
