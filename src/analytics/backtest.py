@@ -279,8 +279,20 @@ class Backtest:
                 'winning_trades': 0,
                 'losing_trades': 0,
                 'win_rate': 0,
+                'total_pnl': 0,
                 'total_return': 0,
                 'final_balance': final_balance,
+                'initial_balance': self.initial_balance,
+                'profit_factor': 0,
+                'sharpe_ratio': 0,
+                'max_drawdown': 0,
+                'avg_win': 0,
+                'avg_loss': 0,
+                'largest_win': 0,
+                'largest_loss': 0,
+                'avg_trade_duration': 0,
+                'trades': [],
+                'equity_curve': self.equity_curve,
             }
 
         trades_df = pd.DataFrame(self.trades)

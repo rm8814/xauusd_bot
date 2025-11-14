@@ -26,6 +26,21 @@ def print_results(results: dict, strategy_name: str):
     print(f"BACKTEST RESULTS: {strategy_name}")
     print("=" * 70)
 
+    # Check if there were any trades
+    if results.get('total_trades', 0) == 0:
+        print(f"\n⚠️  NO TRADES EXECUTED")
+        print(f"\n   No valid entry signals were detected during the backtest period.")
+        print(f"   This could mean:")
+        print(f"   - Indicators didn't align (4-layer confirmation required)")
+        print(f"   - Data period too short")
+        print(f"   - Strategy conditions too strict")
+        print(f"\n   Try:")
+        print(f"   - Increasing --days parameter")
+        print(f"   - Testing a different strategy")
+        print(f"   - Checking indicator calculations")
+        print("\n" + "=" * 70)
+        return
+
     print(f"\n📊 TRADING STATISTICS")
     print(f"   Total Trades: {results['total_trades']}")
     print(f"   Winning Trades: {results['winning_trades']}")
@@ -33,22 +48,23 @@ def print_results(results: dict, strategy_name: str):
     print(f"   Win Rate: {results['win_rate']:.2f}%")
 
     print(f"\n💰 P&L METRICS")
-    print(f"   Initial Balance: ${results['initial_balance']:.2f}")
-    print(f"   Final Balance: ${results['final_balance']:.2f}")
-    print(f"   Total P&L: ${results['total_pnl']:.2f}")
-    print(f"   Total Return: {results['total_return']:.2f}%")
+    print(f"   Initial Balance: ${results.get('initial_balance', 0):.2f}")
+    print(f"   Final Balance: ${results.get('final_balance', 0):.2f}")
+    print(f"   Total P&L: ${results.get('total_pnl', 0):.2f}")
+    print(f"   Total Return: {results.get('total_return', 0):.2f}%")
 
     print(f"\n📈 PERFORMANCE METRICS")
-    print(f"   Profit Factor: {results['profit_factor']:.2f}")
-    print(f"   Sharpe Ratio: {results['sharpe_ratio']:.2f}")
-    print(f"   Max Drawdown: {results['max_drawdown']:.2f}%")
+    pf = results.get('profit_factor', 0)
+    print(f"   Profit Factor: {pf:.2f}" if pf != float('inf') else "   Profit Factor: ∞")
+    print(f"   Sharpe Ratio: {results.get('sharpe_ratio', 0):.2f}")
+    print(f"   Max Drawdown: {results.get('max_drawdown', 0):.2f}%")
 
     print(f"\n💵 TRADE AVERAGES")
-    print(f"   Average Win: ${results['avg_win']:.2f}")
-    print(f"   Average Loss: ${results['avg_loss']:.2f}")
-    print(f"   Largest Win: ${results['largest_win']:.2f}")
-    print(f"   Largest Loss: ${results['largest_loss']:.2f}")
-    print(f"   Avg Duration: {results['avg_trade_duration']:.1f} bars")
+    print(f"   Average Win: ${results.get('avg_win', 0):.2f}")
+    print(f"   Average Loss: ${results.get('avg_loss', 0):.2f}")
+    print(f"   Largest Win: ${results.get('largest_win', 0):.2f}")
+    print(f"   Largest Loss: ${results.get('largest_loss', 0):.2f}")
+    print(f"   Avg Duration: {results.get('avg_trade_duration', 0):.1f} bars")
 
     print("\n" + "=" * 70)
 
