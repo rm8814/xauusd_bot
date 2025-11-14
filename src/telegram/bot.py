@@ -12,7 +12,7 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
-from typing import Optional
+from typing import Optional, Dict
 import os
 
 from src.telegram.formatters.signal_formatter import SignalFormatter
@@ -291,7 +291,3 @@ Use /signals to find trading opportunities.
             await self.application.stop()
             await self.application.shutdown()
             logger.info("Bot stopped")
-
-
-# Import Dict for type hints
-from typing import Dict
