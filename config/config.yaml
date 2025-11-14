@@ -1,0 +1,74 @@
+# Main Configuration File for XAU/USD Trading Bot
+
+# Trading Pair
+symbol: "XAU/USD"
+exchange: "forex"
+
+# Timeframes
+timeframes:
+  - "1h"
+  - "4h"
+  - "1day"
+
+# Data Settings
+data:
+  candle_limit: 100
+  update_interval_seconds: 60
+  cache_enabled: true
+  cache_ttl_seconds: 300
+
+# Risk Management
+risk:
+  max_risk_per_trade_percent: 1.0
+  default_lot_size: 0.01
+  max_open_positions: 4
+  max_positions_per_timeframe: 2
+
+  # Account Protection
+  max_daily_loss_percent: 5.0
+  max_weekly_loss_percent: 10.0
+  max_drawdown_percent: 30.0
+
+  # Psychology Safeguards
+  reduce_size_after_losses: 3
+  size_reduction_percent: 50
+  mandatory_break_after_losses: 5
+  break_duration_hours: 24
+
+  # Overtrading Prevention
+  max_trades_per_day: 10
+  max_trades_per_week: 30
+  min_time_between_trades_minutes: 15
+
+# Signal Validation
+signal:
+  wait_time_minutes: 5
+  revalidation_interval_seconds: 60
+  min_quality_score: 60
+
+# Alerts
+alerts:
+  entry_alerts: true
+  exit_alerts: true
+  position_updates: true
+  position_update_interval_minutes: 60
+  system_alerts: true
+
+# Database
+database:
+  backup_enabled: true
+  backup_interval_hours: 24
+  retention_days: 90
+
+# Monitoring
+monitoring:
+  health_check_interval_seconds: 300
+  metrics_collection: true
+  performance_tracking: true
+
+# Features
+features:
+  trade_journal: true
+  analytics: true
+  pattern_recognition: false
+  simulation_mode: false

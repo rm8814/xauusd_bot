@@ -1,0 +1,96 @@
+# Risk Management Configuration
+
+# Position Sizing
+position_sizing:
+  default_risk_percent: 1.0
+  max_risk_percent: 2.0
+  min_risk_percent: 0.5
+  default_lot_size: 0.01
+  min_lot_size: 0.01
+  max_lot_size: 1.0
+
+# Position Limits
+position_limits:
+  max_open_positions: 4
+  max_positions_per_timeframe: 2
+  max_positions_per_direction: 3
+  max_correlated_positions: 2
+
+# Stop Loss & Take Profit
+stop_loss:
+  default_atr_multiplier: 1.5
+  min_atr_multiplier: 1.0
+  max_atr_multiplier: 3.0
+  trailing_stop_enabled: false
+  trailing_stop_activation_percent: 1.5
+  trailing_stop_distance_percent: 0.5
+
+take_profit:
+  default_atr_multiplier: 4.5
+  min_atr_multiplier: 2.0
+  max_atr_multiplier: 6.0
+  partial_take_profit_enabled: false
+  partial_tp_levels:
+    - percent: 50
+      profit_percent: 1.5
+
+# Account Protection
+account_protection:
+  max_daily_loss_percent: 5.0
+  max_daily_loss_amount: null
+  max_weekly_loss_percent: 10.0
+  max_monthly_loss_percent: 20.0
+  max_drawdown_percent: 30.0
+  emergency_stop_loss_percent: 15.0
+
+# Psychology & Behavior
+psychology:
+  # After losing trades
+  reduce_size_after_losses: 3
+  size_reduction_percent: 50
+  recovery_winning_trades: 2
+
+  # Mandatory breaks
+  mandatory_break_after_losses: 5
+  break_duration_hours: 24
+
+  # Revenge trading prevention
+  max_trades_after_loss: 2
+  cooldown_period_minutes: 30
+
+# Overtrading Prevention
+overtrading:
+  max_trades_per_day: 10
+  max_trades_per_week: 30
+  max_trades_per_month: 100
+  min_time_between_trades_minutes: 15
+  alert_on_excessive_trading: true
+  excessive_trading_threshold: 8
+
+# Risk-Reward Rules
+risk_reward:
+  min_risk_reward_ratio: 2.0
+  preferred_risk_reward_ratio: 3.0
+  reject_low_rr_trades: true
+
+# Correlation Management
+correlation:
+  check_correlation: false
+  max_correlation_coefficient: 0.7
+  correlation_lookback_days: 30
+
+# Market Conditions
+market_conditions:
+  avoid_major_news: true
+  news_blackout_minutes_before: 30
+  news_blackout_minutes_after: 30
+  avoid_weekend_gaps: true
+  avoid_low_volume_periods: true
+  min_volume_threshold: 1000
+
+# Emergency Actions
+emergency:
+  auto_close_on_daily_limit: true
+  auto_close_on_drawdown_limit: true
+  notify_on_emergency_close: true
+  pause_trading_on_emergency: true
