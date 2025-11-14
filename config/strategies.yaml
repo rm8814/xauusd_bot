@@ -11,9 +11,6 @@ strategies:
       primary:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -34,9 +31,6 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -60,9 +54,6 @@ strategies:
       primary:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -83,9 +74,6 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -109,9 +97,6 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -132,9 +117,6 @@ strategies:
       primary:
         name: "Momentum"
         type: "momentum"
-      volume:
-        name: "Donchian Channel"
-        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"

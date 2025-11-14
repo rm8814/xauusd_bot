@@ -70,9 +70,6 @@ class Backtest:
             primary_signal = Indicators.get_indicator_signal(
                 df, indicators['primary']['type'], self.indicator_params
             )
-            volume_signal = Indicators.get_indicator_signal(
-                df, indicators['volume']['type'], self.indicator_params
-            )
             confirmation_signal = Indicators.get_indicator_signal(
                 df, indicators['confirmation']['type'], self.indicator_params
             )
@@ -152,13 +149,12 @@ class Backtest:
 
                 # Check entry conditions if not in position
                 if not position and i > 50:  # Need enough data for indicators
-                    # Check if all 4 indicators align
+                    # Check if all 3 indicators align
                     primary = primary_signal.iloc[i]
-                    volume = volume_signal.iloc[i]
                     confirmation = confirmation_signal.iloc[i]
                     baseline = baseline_signal.iloc[i]
 
-                    if primary != 0 and primary == volume == confirmation == baseline:
+                    if primary != 0 and primary == confirmation == baseline:
                         # Entry signal detected
                         direction = 'LONG' if primary > 0 else 'SHORT'
 
