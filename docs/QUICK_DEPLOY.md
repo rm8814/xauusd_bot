@@ -41,7 +41,14 @@ git checkout claude/xauusd-trading-bot-poc-01EV2bQKRwpAzDwerZR6rTNZ
 python3.11 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+
+# Install dependencies (use minimal requirements for production)
+pip install -r requirements-minimal.txt
+
+# If you get errors, try installing packages individually:
+# pip install python-dotenv pyyaml pandas numpy requests sqlalchemy aiohttp python-dateutil twelvedata
+# pip install python-telegram-bot==20.7
+# pip install TA-Lib  # Make sure TA-Lib C library is installed first
 
 # Create .env file
 cp .env.template .env
@@ -133,10 +140,51 @@ Check Telegram - your bot should be sending updates!
 
 ## Troubleshooting
 
+### Installation Issues
+
+**Error: "No matching distribution found for pandas-ta" or similar?**
+```bash
+# Use the minimal requirements instead:
+pip install -r requirements-minimal.txt
+```
+
 **TA-Lib fails to install?**
 ```bash
+# Install build dependencies
 apt install python3-dev build-essential -y
+
+# Reinstall TA-Lib C library
+cd /tmp
+wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+tar -xzf ta-lib-0.4.0-src.tar.gz
+cd ta-lib/
+./configure --prefix=/usr && make && make install
+ldconfig
+
+# Then try installing Python package again
+cd /root/xauusd_bot
+source venv/bin/activate
+pip install TA-Lib
 ```
+
+**Numpy version errors?**
+```bash
+# Install compatible versions
+pip install "numpy>=1.24.0,<2.0.0"
+pip install "pandas>=2.0.0"
+```
+
+**Python version issues?**
+```bash
+# Check Python version (need 3.9+)
+python3 --version
+
+# If too old, install Python 3.11
+add-apt-repository ppa:deadsnakes/ppa -y
+apt update && apt install python3.11 python3.11-venv -y
+```
+
+### Runtime Issues
 
 **Bot doesn't start?**
 ```bash
@@ -146,10 +194,23 @@ journalctl -u xauusd-bot -n 50
 **Check bot is running:**
 ```bash
 ps aux | grep python
+systemctl status xauusd-bot
 ```
 
 **View all logs:**
 ```bash
 ls -la /root/xauusd_bot/logs/
 tail -f /root/xauusd_bot/logs/bot.log
+tail -f /root/xauusd_bot/logs/errors.log
+```
+
+**Import errors when running?**
+```bash
+# Activate venv and test imports
+cd /root/xauusd_bot
+source venv/bin/activate
+python -c "import pandas; print('pandas OK')"
+python -c "import numpy; print('numpy OK')"
+python -c "import talib; print('talib OK')"
+python -c "import telegram; print('telegram OK')"
 ```

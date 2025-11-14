@@ -1,15 +1,14 @@
 # Core Python Libraries
 python-dotenv==1.0.0
 pyyaml==6.0.1
-pytz==2023.3
+pytz==2024.1
 
 # Data Processing
-pandas>=2.1.0
-numpy>=1.26.0
+pandas>=2.0.0
+numpy>=1.24.0
 
 # Technical Analysis
 TA-Lib==0.4.28
-pandas-ta==0.3.14b0
 
 # Telegram Bot
 python-telegram-bot==20.7
@@ -20,26 +19,23 @@ requests>=2.31.0
 
 # Database
 sqlalchemy==2.0.23
-alembic==1.12.1
 
 # Async Support
 aiohttp==3.9.1
-asyncio
 
 # Utilities
 python-dateutil>=2.8.2
-colorama==0.4.6
 
-# Logging & Monitoring
-sentry-sdk==1.38.0
+# Logging & Monitoring (optional)
+# sentry-sdk==1.38.0
 
-# Testing
-pytest==7.4.3
-pytest-asyncio==0.21.1
-pytest-cov==4.1.0
-pytest-mock==3.12.0
+# Testing (optional - install separately if needed)
+# pytest==7.4.3
+# pytest-asyncio==0.21.1
+# pytest-cov==4.1.0
+# pytest-mock==3.12.0
 
-# Development
-black==23.12.1
-flake8==6.1.0
-mypy==1.7.1
+# Development (optional - install separately if needed)
+# black==23.12.1
+# flake8==6.1.0
+# mypy==1.7.1

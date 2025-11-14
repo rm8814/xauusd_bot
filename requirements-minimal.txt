@@ -1,0 +1,29 @@
+# Minimal Production Requirements
+# Install with: pip install -r requirements-minimal.txt
+
+# Core
+python-dotenv==1.0.0
+pyyaml==6.0.1
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Technical Analysis (must install TA-Lib system package first)
+TA-Lib==0.4.28
+
+# Telegram Bot
+python-telegram-bot==20.7
+
+# Data Sources
+twelvedata==1.3.0
+requests>=2.31.0
+
+# Database
+sqlalchemy==2.0.23
+
+# Async Support
+aiohttp==3.9.1
+
+# Utilities
+python-dateutil>=2.8.2
