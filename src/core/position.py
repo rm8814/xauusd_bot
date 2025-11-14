@@ -3,10 +3,12 @@ Position Manager Module
 Manages open positions, tracks P&L, monitors exit conditions
 """
 
+from __future__ import annotations
 from typing import Dict, List, Optional
 from datetime import datetime
 import logging
 from sqlalchemy.orm import Session
+import pandas as pd
 
 from src.database.models import Trade, Position
 from src.database.trades_db import TradeDB
@@ -408,7 +410,3 @@ class PositionManager:
         except Exception as e:
             logger.error(f"Error getting position summary: {e}")
             return None
-
-
-# Import pandas at the end to avoid circular imports
-import pandas as pd
