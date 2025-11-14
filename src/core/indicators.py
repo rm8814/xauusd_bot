@@ -323,6 +323,26 @@ class Indicators:
         return upper_band, middle_band, lower_band
 
     @staticmethod
+    def donchian_channel_signal(df: pd.DataFrame, period: int = 20) -> pd.Series:
+        """
+        Donchian Channel as a trading signal
+        Signal: Price > middle = bullish (+1), Price < middle = bearish (-1)
+
+        This is a price-based momentum indicator suitable for forex pairs.
+        When price is in the upper half of the channel, trend is bullish.
+        When price is in the lower half, trend is bearish.
+        """
+        upper_band = df['high'].rolling(window=period).max()
+        lower_band = df['low'].rolling(window=period).min()
+        middle_band = (upper_band + lower_band) / 2
+
+        signals = pd.Series(0, index=df.index)
+        signals[df['close'] > middle_band] = 1  # Bullish
+        signals[df['close'] < middle_band] = -1  # Bearish
+
+        return signals
+
+    @staticmethod
     def get_indicator_signal(
         df: pd.DataFrame, indicator_type: str, params: dict
     ) -> pd.Series:
@@ -358,6 +378,8 @@ class Indicators:
                 )
             elif indicator_type == "hull_ma":
                 return Indicators.hull_ma(df, params.get('period', 20))
+            elif indicator_type == "donchian_channel_signal":
+                return Indicators.donchian_channel_signal(df, params.get('period', 20))
             else:
                 logger.error(f"Unknown indicator type: {indicator_type}")
                 return pd.Series(0, index=df.index)

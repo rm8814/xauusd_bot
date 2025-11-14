@@ -12,8 +12,8 @@ strategies:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -35,8 +35,8 @@ strategies:
         name: "Momentum"
         type: "momentum"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -61,8 +61,8 @@ strategies:
         name: "Awesome Oscillator"
         type: "awesome_oscillator"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -84,8 +84,8 @@ strategies:
         name: "Momentum"
         type: "momentum"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -110,8 +110,8 @@ strategies:
         name: "Momentum"
         type: "momentum"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"
@@ -133,8 +133,8 @@ strategies:
         name: "Momentum"
         type: "momentum"
       volume:
-        name: "Chaikin Oscillator"
-        type: "chaikin_oscillator"
+        name: "Donchian Channel"
+        type: "donchian_channel_signal"
       confirmation:
         name: "RVI"
         type: "rvi"

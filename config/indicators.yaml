@@ -50,6 +50,10 @@ indicators:
     period: 20
     description: "Price channel based on highest high and lowest low"
 
+  donchian_channel_signal:
+    period: 20
+    description: "Donchian Channel as momentum signal (price-based, no volume needed)"
+
   atr:
     period: 14
     description: "Average True Range - volatility indicator"
