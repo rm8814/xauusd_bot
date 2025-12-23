@@ -1,0 +1,149 @@
+# Trading Strategies Configuration
+
+strategies:
+  strategy_1:
+    id: "1"
+    name: "1D Pure AO"
+    timeframe: "1day"
+    mode: "PURE"
+    enabled: true
+    indicators:
+      primary:
+        name: "Awesome Oscillator"
+        type: "awesome_oscillator"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "SuperTrend"
+        type: "supertrend"
+      volatility:
+        name: "Keltner Channel"
+        type: "keltner_channel"
+
+  strategy_2:
+    id: "2"
+    name: "1D ATR Momentum"
+    timeframe: "1day"
+    mode: "ATR"
+    enabled: true
+    indicators:
+      primary:
+        name: "Momentum"
+        type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "SuperTrend"
+        type: "supertrend"
+      volatility:
+        name: "Bollinger Band Width"
+        type: "bollinger_band_width"
+    atr:
+      stop_loss_multiplier: 1.5
+      take_profit_multiplier: 4.5
+
+  strategy_3:
+    id: "3"
+    name: "4H Pure AO"
+    timeframe: "4h"
+    mode: "PURE"
+    enabled: true
+    indicators:
+      primary:
+        name: "Awesome Oscillator"
+        type: "awesome_oscillator"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "SuperTrend"
+        type: "supertrend"
+      volatility:
+        name: "Donchian Channel"
+        type: "donchian_channel"
+
+  strategy_4:
+    id: "4"
+    name: "4H ATR Momentum"
+    timeframe: "4h"
+    mode: "ATR"
+    enabled: true
+    indicators:
+      primary:
+        name: "Momentum"
+        type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "PSAR"
+        type: "psar"
+      volatility:
+        name: "Donchian Channel"
+        type: "donchian_channel"
+    atr:
+      stop_loss_multiplier: 1.5
+      take_profit_multiplier: 4.5
+
+  strategy_5:
+    id: "5"
+    name: "1H Pure Momentum"
+    timeframe: "1h"
+    mode: "PURE"
+    enabled: true
+    indicators:
+      primary:
+        name: "Momentum"
+        type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "Hull MA"
+        type: "hull_ma"
+      volatility:
+        name: "Donchian Channel"
+        type: "donchian_channel"
+
+  strategy_6:
+    id: "6"
+    name: "1H ATR Momentum"
+    timeframe: "1h"
+    mode: "ATR"
+    enabled: true
+    indicators:
+      primary:
+        name: "Momentum"
+        type: "momentum"
+      volume:
+        name: "Chaikin Oscillator"
+        type: "chaikin_oscillator"
+      confirmation:
+        name: "RVI"
+        type: "rvi"
+      baseline:
+        name: "Hull MA"
+        type: "hull_ma"
+      volatility:
+        name: "Donchian Channel"
+        type: "donchian_channel"
+    atr:
+      stop_loss_multiplier: 1.5
+      take_profit_multiplier: 4.5

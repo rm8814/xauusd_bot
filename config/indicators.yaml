@@ -1,0 +1,67 @@
+# Technical Indicators Configuration
+
+indicators:
+  awesome_oscillator:
+    fast_period: 5
+    slow_period: 34
+    description: "Measures market momentum using median price"
+
+  momentum:
+    period: 10
+    description: "Rate of change in price over period"
+
+  chaikin_oscillator:
+    fast_period: 3
+    slow_period: 10
+    description: "Measures accumulation/distribution of money flow"
+
+  rvi:
+    period: 10
+    signal_period: 4
+    description: "Relative Vigor Index - momentum oscillator"
+
+  supertrend:
+    period: 10
+    multiplier: 3.0
+    description: "Trend following indicator based on ATR"
+
+  psar:
+    af_start: 0.02
+    af_increment: 0.02
+    af_max: 0.2
+    description: "Parabolic SAR - stop and reverse indicator"
+
+  hull_ma:
+    period: 20
+    description: "Hull Moving Average - reduced lag moving average"
+
+  keltner_channel:
+    period: 20
+    atr_period: 10
+    multiplier: 2.0
+    description: "Volatility-based channel indicator"
+
+  bollinger_band_width:
+    period: 20
+    std: 2.0
+    description: "Measures volatility using standard deviation"
+
+  donchian_channel:
+    period: 20
+    description: "Price channel based on highest high and lowest low"
+
+  donchian_channel_signal:
+    period: 20
+    description: "Donchian Channel as momentum signal (price-based, no volume needed)"
+
+  atr:
+    period: 14
+    description: "Average True Range - volatility indicator"
+
+  ema:
+    period: 20
+    description: "Exponential Moving Average"
+
+  sma:
+    period: 20
+    description: "Simple Moving Average"
